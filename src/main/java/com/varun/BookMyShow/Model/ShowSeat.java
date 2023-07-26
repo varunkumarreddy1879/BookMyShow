@@ -6,6 +6,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
 public class ShowSeat extends BaseModel{
@@ -14,5 +16,6 @@ public class ShowSeat extends BaseModel{
     @ManyToOne
     private Seat seat;
     @Enumerated(EnumType.ORDINAL)
-    private SeatStatus seatStatus;
+    private ShowSeatStatus showSeatStatus;
+    private Date lockedAt;
 }

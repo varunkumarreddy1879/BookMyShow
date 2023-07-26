@@ -1,7 +1,7 @@
 package com.varun.BookMyShow.Model;
 
-public enum SeatStatus {
+public enum ShowSeatStatus {
     BOOKED,
     EMPTY,
-    PENDING,
+    BLOCKED,
 }

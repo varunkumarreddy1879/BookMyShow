@@ -1,7 +1,6 @@
 package com.varun.BookMyShow.Model;
 
-public enum PaymentStatus {
+public enum ResponceStatus {
     SUCCESS,
     FAILED,
-    PENDING,
 }

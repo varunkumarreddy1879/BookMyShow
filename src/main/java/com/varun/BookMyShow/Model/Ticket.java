@@ -16,7 +16,7 @@ public class Ticket extends BaseModel{
     @ManyToOne
     private Show show;
 
-    @OneToMany
+    @OneToMany(mappedBy = "ticket")
     private List<Payment> payments;
 
     @Enumerated(EnumType.ORDINAL)

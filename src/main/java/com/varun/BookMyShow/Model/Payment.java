@@ -10,7 +10,9 @@ import java.util.Date;
 @Data
 @Entity
 public class Payment extends BaseModel{
-    private Long transactionReferenceId;
+
+    private int amount;
+    private String transactionReferenceId;
     @ManyToOne
     private Ticket ticket;
     @ManyToOne
@@ -20,5 +22,8 @@ public class Payment extends BaseModel{
     private PaymentProvider paymentProvider;
     @Enumerated(EnumType.ORDINAL)
     private PaymentStatus paymentStatus;
+
+    @Enumerated(EnumType.ORDINAL)
+    private PaymentType paymentType;
 
 }
