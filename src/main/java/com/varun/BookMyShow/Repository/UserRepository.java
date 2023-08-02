@@ -11,6 +11,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     public Optional<User> findById(Long userId);
 
-    interface SeatRepository {
-    }
+    public Optional<User> findBymail(String mail);
+
+    public User save(User user);
 }

@@ -5,7 +5,10 @@ import com.varun.BookMyShow.Model.*;
 import com.varun.BookMyShow.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Date;
@@ -28,6 +31,7 @@ public class TicketService {
         this.ticketRepository=ticketRepository;
     }
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public Ticket getTicket(Long userId, List<Long> seatIds, Long showId) throws InvalidArgumentException {
         /*
 
@@ -63,7 +67,8 @@ public class TicketService {
 
         // get list<Seat>
         List<Seat> seats=seatRepository.findAllByIdIn(seatIds);
-        List<ShowSeat> showSeats=showSeatRepository.findAllBySeatInandShow(seats,show);
+        //lock the showseats by using @Lock over query
+        List<ShowSeat> showSeats=showSeatRepository.findAllBySeatAndShowIn(show,seats);
 
         for(ShowSeat showSeat:showSeats){
             if(showSeat.getShowSeatStatus().equals(ShowSeatStatus.BOOKED)
